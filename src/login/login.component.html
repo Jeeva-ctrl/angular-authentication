@@ -6,7 +6,7 @@
   <div class="card">
     <div class="card-header">Login</div>
     <div class="card-body">
-      <form>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="username">Username</label>
           <input type="text" name="username" class="form-control" />
