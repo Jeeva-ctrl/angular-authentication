@@ -15,7 +15,7 @@ export class Authenticationservice {
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  login(username:string, password:string){
-
+  login(username: string, password: string) {
+    alert('username' + username);
   }
 }

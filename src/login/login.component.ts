@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
+import { Authenticationservice } from '../services';
 
 @Component({ templateUrl: 'login.component.html' })
 export class LoginComponent implements OnInit {
@@ -11,7 +12,10 @@ export class LoginComponent implements OnInit {
   returnUrl: string;
   error: '';
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private authenticationService: Authenticationservice
+  ) {}
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
@@ -23,6 +27,10 @@ export class LoginComponent implements OnInit {
   }
   onSubmit() {
     this.submitted = true;
-    console.log('t', this.loginForm);
+    if (this.loginForm.invalid) {
+      return;
+    }
+    this.loading = true;
+    this.authenticationService.login('teset', 'test');
   }
 }
